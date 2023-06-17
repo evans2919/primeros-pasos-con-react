@@ -1,21 +1,6 @@
 import imgUno from "./assets/images/img-1.jpg";
 import PropTypes from "prop-types";
-
-const MyButton = ({ title, number }) => {
-
-    const handleClick = () => console.log("Haz hecho clic!");
-    
-return (
-    <button onClick={handleClick}>
-      {title} {number}
-    </button>
-  );
-};
-
-MyButton.propTypes = {
-  title: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
-};
+import MyButton from "./components/MyButton";
 
 const AllFruits = ({ listFruits }) => {
   return <li> {listFruits} </li>;
@@ -50,7 +35,9 @@ const App = () => {
       <h1 className={`${classTitle} ${classColor.info}`}>{projectName}</h1>
       <img src={imgUno} />
 
-      <MyButton title="Buenos días" number={25}></MyButton>
+      <MyButton title="Button " number={1}></MyButton>
+      <MyButton title="Button " number={2}></MyButton>
+      <MyButton title="Button " number={3}></MyButton>
 
       <WelcomeText user={user} />
 
