@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import imgUno from "./assets/images/img-1.jpg";
+import PropTypes from "prop-types";
 
-function App() {
-  const [count, setCount] = useState(0)
+const MyButton = ({ title, number }) => {
+
+    const handleClick = () => console.log("Haz hecho clic!");
+    
+return (
+    <button onClick={handleClick}>
+      {title} {number}
+    </button>
+  );
+};
+
+MyButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+};
+
+const AllFruits = ({ listFruits }) => {
+  return <li> {listFruits} </li>;
+};
+
+AllFruits.propTypes = {
+  listFruits: PropTypes.string.isRequired,
+};
+
+const WelcomeText = ({ user }) => (
+  <h1> {user ? "Online user" : "Offline user"}</h1>
+);
+
+WelcomeText.propTypes = {
+  user: PropTypes.bool.isRequired,
+};
+
+const App = () => {
+  const projectName = "Mi primer proyecto con REACT";
+  const classTitle = "text-center";
+  const classColor = {
+    info: "color-info",
+    warning: "color-warning",
+  };
+
+  const fruits = ["🍊", "🍌", "🍍", "🥭", "🍓"];
+
+  const user = true;
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <h1 className={`${classTitle} ${classColor.info}`}>{projectName}</h1>
+      <img src={imgUno} />
 
-export default App
+      <MyButton title="Buenos días" number={25}></MyButton>
+
+      <WelcomeText user={user} />
+
+      <ul>
+        {fruits.map((fruit, index) => (
+          <AllFruits key={index} listFruits={fruit} />
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default App;
