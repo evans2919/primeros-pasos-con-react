@@ -1,7 +1,7 @@
 import imgUno from "./assets/images/img-1.jpg";
 import MyButton from "./components/MyButton";
-import DefaultList from "./components/DefaultList";
 import WelcomeMessage from "./components/WelcomeMessage";
+import DefaultList from "./components/DefaultList";
 
 const App = () => {
   const projectName = "Mi primer proyecto con REACT";
@@ -11,8 +11,7 @@ const App = () => {
     warning: "color-warning",
   };
 
-  const fruits = ["🍊", "🍌", "🍍", "🥭", "🍓"];
-
+  const list = ["🍊", "🍌", "🍍", "🥭", "🍓"];
   const user = true;
 
   return (
@@ -23,14 +22,8 @@ const App = () => {
       <MyButton title="Button " number={1}></MyButton>
       <MyButton title="Button " number={2}></MyButton>
       <MyButton title="Button " number={3}></MyButton>
-
       <WelcomeMessage user={user} />
-
-      <ul>
-        {fruits.map((fruit, index) => (
-          <DefaultList key={index} list={fruit} />
-        ))}
-      </ul>
+      <DefaultList list={list}></DefaultList>
     </>
   );
 };

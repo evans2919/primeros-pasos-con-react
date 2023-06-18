@@ -12,8 +12,8 @@ const MyButton = ({ title, number }) => {
 };
 
 MyButton.propTypes = {
-    title: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired
+  title: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
 };
 
 export default MyButton;
