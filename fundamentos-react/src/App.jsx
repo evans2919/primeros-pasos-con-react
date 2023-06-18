@@ -1,22 +1,7 @@
 import imgUno from "./assets/images/img-1.jpg";
-import PropTypes from "prop-types";
 import MyButton from "./components/MyButton";
-
-const AllFruits = ({ listFruits }) => {
-  return <li> {listFruits} </li>;
-};
-
-AllFruits.propTypes = {
-  listFruits: PropTypes.string.isRequired,
-};
-
-const WelcomeText = ({ user }) => (
-  <h1> {user ? "Online user" : "Offline user"}</h1>
-);
-
-WelcomeText.propTypes = {
-  user: PropTypes.bool.isRequired,
-};
+import DefaultList from "./components/DefaultList";
+import WelcomeMessage from "./components/WelcomeMessage";
 
 const App = () => {
   const projectName = "Mi primer proyecto con REACT";
@@ -39,11 +24,11 @@ const App = () => {
       <MyButton title="Button " number={2}></MyButton>
       <MyButton title="Button " number={3}></MyButton>
 
-      <WelcomeText user={user} />
+      <WelcomeMessage user={user} />
 
       <ul>
         {fruits.map((fruit, index) => (
-          <AllFruits key={index} listFruits={fruit} />
+          <DefaultList key={index} list={fruit} />
         ))}
       </ul>
     </>
