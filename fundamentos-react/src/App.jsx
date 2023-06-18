@@ -11,7 +11,9 @@ const App = () => {
     warning: "color-warning",
   };
 
-  const list = ["🍊", "🍌", "🍍", "🥭", "🍓"];
+  const listOfFruits = ["🍊", "🍌"];
+  const listOfFruitsTwo = ["🍍", "🥭", "🍓"];
+  
   const user = true;
 
   return (
@@ -22,8 +24,12 @@ const App = () => {
       <MyButton title="Button " number={1}></MyButton>
       <MyButton title="Button " number={2}></MyButton>
       <MyButton title="Button " number={3}></MyButton>
-      <WelcomeMessage user={user} />
-      <DefaultList list={list}></DefaultList>
+      
+          <WelcomeMessage user={user} />
+
+      <DefaultList list={listOfFruits}></DefaultList>
+      <DefaultList list={listOfFruitsTwo}></DefaultList>
+      
     </>
   );
 };
