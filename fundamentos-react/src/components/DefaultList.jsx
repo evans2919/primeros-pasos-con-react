@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const DefaultList = ({ list }) => (
   <ul>
     {list.map((list, index) => (
-      <li key={index}> {list} </li>
+      <li key={index}> {list}</li>
     ))}
   </ul>
 );
