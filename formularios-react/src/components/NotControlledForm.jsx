@@ -1,6 +1,16 @@
+import { useRef } from "react";
+
 const NotControlledForm = () => {
+
+    const form = useRef(null);
+    const handleSubmit = (e) => { 
+        e.preventDefault();
+        console.log(form.current);
+        console.log("Me tocaste")
+    }
+
   return (
-    <form action="">
+    <form onSubmit={handleSubmit} ref={form}>
       <input
         type="text"
         placeholder="Ingrese ToDo"
