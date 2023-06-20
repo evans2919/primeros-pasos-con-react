@@ -1,5 +1,13 @@
+import NotControlledForm from "./components/NotControlledForm";
 const App = () => {
- return "Buenos días"
+  return (
+
+    <div className="container">
+    <NotControlledForm></NotControlledForm>
+    </div>
+
+
+  );
 }
 
 export default App;
