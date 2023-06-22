@@ -14,12 +14,12 @@ const NotControlledForm = () => {
 
     const data = new FormData(form.current);
     const { name, description, state } = Object.fromEntries([
-      ...data.entries(),
+      ...data.entries()
     ]);
 
     //Validar los datos
 
-    if (!name.trim() || !description.trim()) {
+    if (!name.trim() || !description.trim() || !state.trim()) {
       setError("Todos los campos son obligatorios.");
     }
     // Resetear formulario 
