@@ -1,13 +1,26 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const NotControlledForm = () => {
-
   const form = useRef(null);
+
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //Capturar los datos
+
     const data = new FormData(form.current);
-    console.log([...data.entries()]);
+    const { name, description, state } = Object.fromEntries([
+      ...data.entries(),
+    ]);
+
+    //Validar los datos
+
+    if (!name.trim() || !description.trim()) {
+      setError("Todos los campos son obligatorios.");
+    }
+
+    form.current.reset();
   };
 
   return (
@@ -23,7 +36,7 @@ const NotControlledForm = () => {
         placeholder="Ingrese descripción"
         className="form-control mb-2"
         name="description"
-        defaultValue="Description #1"
+        defaultValue="Descripción #1"
       />
       <select
         className="form-select mb-2"
@@ -37,6 +50,8 @@ const NotControlledForm = () => {
       <button type="submit" className="btn btn-primary">
         Procesar
       </button>
+      <br></br>
+      {error !== "" && error}
     </form>
   );
 };
