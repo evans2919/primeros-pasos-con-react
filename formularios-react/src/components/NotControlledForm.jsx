@@ -7,6 +7,9 @@ const NotControlledForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setError("");
+
     //Capturar los datos
 
     const data = new FormData(form.current);
@@ -19,7 +22,7 @@ const NotControlledForm = () => {
     if (!name.trim() || !description.trim()) {
       setError("Todos los campos son obligatorios.");
     }
-
+    // Resetear formulario 
     form.current.reset();
   };
 
