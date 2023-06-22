@@ -2,12 +2,13 @@ import { useRef } from "react";
 
 const NotControlledForm = () => {
 
-    const form = useRef(null);
-    const handleSubmit = (e) => { 
-        e.preventDefault();
-        console.log(form.current);
-        console.log("Me tocaste")
-    }
+  const form = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(form.current);
+    console.log([...data.entries()]);
+  };
 
   return (
     <form onSubmit={handleSubmit} ref={form}>
@@ -16,18 +17,20 @@ const NotControlledForm = () => {
         placeholder="Ingrese ToDo"
         className="form-control mb-2"
         name="name"
+        defaultValue="ToDo #1"
       />
       <textarea
         placeholder="Ingrese descripción"
         className="form-control mb-2"
         name="description"
+        defaultValue="Description #1"
       />
       <select
         className="form-select mb-2"
-        defaultValue="completado"
         name="state"
+        defaultValue="procesado"
       >
-        <option value="">Elija una opción</option>
+        <option>Elija una opción</option>
         <option value="pendiente">Pendiente</option>
         <option value="procesado">Procesado</option>
       </select>
