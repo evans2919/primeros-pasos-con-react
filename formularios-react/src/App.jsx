@@ -1,13 +1,11 @@
-import NotControlledForm from "./components/NotControlledForm";
+import ControlledForm from "./components/ControlledForm";
+// import NotControlledForm from "./components/NotControlledForm";
 const App = () => {
   return (
-
     <div className="container">
-    <h1>Formulario no controlado</h1>
-    <NotControlledForm></NotControlledForm>
+    <h1>Formulario controlado</h1>
+    <ControlledForm></ControlledForm>
     </div>
-
-
   );
 }
 
