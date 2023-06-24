@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const ControlledForm = () => {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
   const [ToDo, setToDo] = useState({
     name: "",
