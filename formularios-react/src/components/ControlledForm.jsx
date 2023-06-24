@@ -8,6 +8,8 @@ const ControlledForm = () => {
     priority: true,
   });
 
+  const { name, description, state, priority } = ToDo;
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -29,14 +31,14 @@ const ControlledForm = () => {
         placeholder="Ingrese ToDo"
         className="form-control mb-2"
         name="name"
-        value={ToDo.name}
+        value={name}
         onChange={handleChange}
       />
       <textarea
         placeholder="Ingrese descripción"
         className="form-control mb-2"
         name="description"
-        value={ToDo.description}
+        value={description}
         onChange={handleChange}
       />
       <div className="form-check mb-2">
@@ -45,7 +47,7 @@ const ControlledForm = () => {
           className="form-check-input"
           name="priority"
           id="inputCheck"
-          checked={ToDo.priority}
+          checked={priority}
           onChange={handleChange}
         />
         <label htmlFor="inputCheck">Prioritario</label>
@@ -54,7 +56,7 @@ const ControlledForm = () => {
       <select
         className="form-select mb-2"
         name="state"
-        value={ToDo.state}
+        value={state}
         onChange={handleChange}
       >
         <option>Elija una opción</option>
