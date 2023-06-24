@@ -1,31 +1,39 @@
 import { useState } from "react";
 
 const ControlledForm = () => {
+  const [error, setError] = useState(false);
+
   const [ToDo, setToDo] = useState({
     name: "",
     description: "",
-    state: "pendiente",
     priority: true,
+    state: "procesado",
   });
 
-  const { name, description, state, priority } = ToDo;
+  const { name, description, priority, state } = ToDo;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError("");
+    if (!name.trim() || !description.trim()) {
+      setError("Todos los campos son obligatorios.");
+    }
   };
 
   const handleChange = (e) => {
-
     const { name, type, checked, value } = e.target;
-
-    setToDo({
-      ...ToDo, [name]: type === "checkbox" ? checked : value,
-    });
-    
+    setToDo({ ...ToDo, [name]: type === "checkbox" ? checked : value });
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {error !== "" && (
+        <>
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        </>
+      )}
       <input
         type="text"
         placeholder="Ingrese ToDo"
