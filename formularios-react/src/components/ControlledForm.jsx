@@ -5,10 +5,17 @@ const ControlledForm = () => {
     name: "",
     description: "",
     state: "pendiente",
-  })
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleChange = (e) => {
+    setToDo({
+      ...ToDo,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -19,20 +26,20 @@ const ControlledForm = () => {
         className="form-control mb-2"
         name="name"
         value={ToDo.name}
-        onChange={(e) => setToDo({ ...ToDo, name: e.target.value })}
+        onChange={handleChange}
       />
       <textarea
         placeholder="Ingrese descripción"
         className="form-control mb-2"
         name="description"
         value={ToDo.description}
-        onChange={(e) => setToDo({ ...ToDo, description: e.target.value })}
+        onChange={handleChange}
       />
       <select
         className="form-select mb-2"
         name="state"
         value={ToDo.state}
-        onChange={(e) => setToDo({ ...ToDo, state: e.target.value })}
+        onChange={handleChange}
       >
         <option>Elija una opción</option>
         <option value="pendiente">Pendiente</option>
