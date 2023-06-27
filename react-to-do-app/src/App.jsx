@@ -33,13 +33,18 @@ const App = () => {
     setToDo([...ToDo, newToDo]);
   };
 
+  const deleteToDo = (id) => {
+    const newArray = ToDo.filter((ToDo) => ToDo.id !== id);
+    setToDo(newArray);
+  };
+
   return (
     <div className="container mb-2">
       <h1 className="my-5">Crear nueva tarea</h1>
 
       <ToDoForm addToDo={addToDo}></ToDoForm>
 
-      <ToDoList ToDo={ToDo}></ToDoList>
+      <ToDoList ToDo={ToDo} deleteToDo={deleteToDo}></ToDoList>
     </div>
   );
 };
