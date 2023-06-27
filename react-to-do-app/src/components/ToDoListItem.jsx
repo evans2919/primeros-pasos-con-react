@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-const ToDoListItem = ({ ToDo }) => {
+const ToDoListItem = ({ ToDo, deleteToDo }) => {
   const { id, name, description, priority, state } = ToDo;
   return (
     <>
-      <li className="list-group-item">
+      <li className="list-group-item my-2 shadow p-3 bg-body rounded">
         <div className="d-flex justify-content-between align-items-start">
           <div>
             <h5 className={state && "text-decoration-line-through"}>{name}</h5>
@@ -11,7 +11,12 @@ const ToDoListItem = ({ ToDo }) => {
               {description}
             </p>
             <div className="d-flex gap-2">
-              <button className="btn btn-sm btn-danger">Eliminar</button>
+              <button
+                className="btn btn-sm btn-danger"
+                onClick={() => deleteToDo(id)}
+              >
+                Eliminar
+              </button>
               <button className="btn btn-sm btn-warning">Actualizar</button>
             </div>
           </div>
