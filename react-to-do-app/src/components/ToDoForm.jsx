@@ -27,13 +27,13 @@ const ToDoForm = ({ addToDo }) => {
     addToDo({
       id: Date.now(),
       ...newToDo,
-      state: state === "procesado" ? true : false,
+      state: state === "procesado"
     });
 
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Tarea creada ",
+      title: "Tarea creada correctamente",
       showConfirmButton: false,
       timer: 1500,
     });
