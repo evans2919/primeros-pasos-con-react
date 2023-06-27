@@ -2,7 +2,7 @@ import { useState } from "react";
 import ToDoForm from "./components/ToDoForm";
 import ToDoList from "./components/ToDoList";
 
-const initialStateNewToDo = [
+const initialStateToDo = [
   {
     id: 1,
     name: "ToDo #1",
@@ -27,19 +27,21 @@ const initialStateNewToDo = [
 ];
 
 const App = () => {
-  const [newToDo, setNewToDo] = useState(initialStateNewToDo);
-  
-  const addToDo = (ToDo) => {
-    setNewToDo([...newToDo, ToDo]);
-  }
-  
+  const [ToDo, setToDo] = useState(initialStateToDo);
+
+  const addToDo = (newToDo) => {
+    setToDo([...ToDo, newToDo]);
+  };
+
   return (
     <div className="container mb-2">
       <h1 className="my-5">Crear tarea</h1>
+
       <ToDoForm addToDo={addToDo}></ToDoForm>
-      <ToDoList newToDo={newToDo}></ToDoList>
+
+      <ToDoList ToDo={ToDo}></ToDoList>
     </div>
   );
-}
+};
 
 export default App;

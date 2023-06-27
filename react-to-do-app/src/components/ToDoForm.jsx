@@ -1,17 +1,18 @@
+/* eslint-disable react/prop-types */
 import Swal from "sweetalert2";
 import { useState } from "react";
 
 const ToDoForm = ({ addToDo }) => {
   // const [error, setError] = useState("");
 
-  const [ToDo, setToDo] = useState({
+  const [newToDo, setNewToDo] = useState({
     name: "",
     description: "",
     priority: true,
     state: "procesado",
   });
 
-  const { name, description, priority, state } = ToDo;
+  const { name, description, priority, state } = newToDo;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,9 +23,10 @@ const ToDoForm = ({ addToDo }) => {
         text: "Título y descripción obligatorios.",
       });
     }
+
     addToDo({
       id: Date.now(),
-      ...ToDo,
+      ...newToDo,
       state: state === "procesado" ? true : false,
     });
 
@@ -39,7 +41,7 @@ const ToDoForm = ({ addToDo }) => {
 
   const handleChange = (e) => {
     const { name, type, checked, value } = e.target;
-    setToDo({ ...ToDo, [name]: type === "checkbox" ? checked : value });
+    setNewToDo({ ...newToDo, [name]: type === "checkbox" ? checked : value });
   };
 
   return (
