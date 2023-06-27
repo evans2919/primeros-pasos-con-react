@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import ToDoForm from "./components/ToDoForm";
 import ToDoList from "./components/ToDoList";
 
-const initialStateToDo = [];
+const initialStateToDo = JSON.parse(localStorage.getItem("ToDo")) || [];
 
 const App = () => {
   const [ToDo, setToDo] = useState(initialStateToDo);
-  
+  useEffect(() => {
+    localStorage.setItem("ToDo", JSON.stringify(ToDo));
+  }, [ToDo]);
+
   const addToDo = (newToDo) => {
     setToDo([...ToDo, newToDo]);
   };
