@@ -21,7 +21,7 @@ const initialStateToDo = [
     id: 3,
     name: "ToDo #3",
     description: "Description ToDo #3",
-    priority: true,
+    priority: false,
     state: false,
   },
 ];
@@ -35,7 +35,7 @@ const App = () => {
 
   return (
     <div className="container mb-2">
-      <h1 className="my-5">Crear tarea</h1>
+      <h1 className="my-5">Crear nueva tarea</h1>
 
       <ToDoForm addToDo={addToDo}></ToDoForm>
 
