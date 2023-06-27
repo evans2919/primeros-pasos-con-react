@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const ToDoListItem = ({ ToDo, deleteToDo }) => {
+const ToDoListItem = ({ ToDo, deleteToDo, updateToDo }) => {
   const { id, name, description, priority, state } = ToDo;
   return (
     <>
@@ -17,7 +17,7 @@ const ToDoListItem = ({ ToDo, deleteToDo }) => {
               >
                 Eliminar
               </button>
-              <button className="btn btn-sm btn-warning">Actualizar</button>
+              <button className="btn btn-sm btn-warning" onClick={() => updateToDo(id)}>Actualizar</button>
             </div>
           </div>
           {priority && <span className="badge bg-primary">Prioritario</span>}
