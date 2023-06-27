@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import ToDoListItem from "./ToDoListItem";
 
-const ToDoList = ({ ToDo, deleteToDo }) => {
+const ToDoList = ({ ToDo, deleteToDo, updateToDo }) => {
   return (
     <div className="mt-5">
       <h2 className="text-center my-5">Lista de tareas</h2>
       <ul className="list-group">
         {ToDo.map((ToDo) => (
-          <ToDoListItem key={ToDo.id} ToDo={ToDo} deleteToDo={deleteToDo}></ToDoListItem>
+          <ToDoListItem key={ToDo.id} ToDo={ToDo} deleteToDo={deleteToDo} updateToDo={updateToDo}></ToDoListItem>
         ))}
       </ul>
       {ToDo.length === 0 &&
