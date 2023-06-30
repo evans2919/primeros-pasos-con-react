@@ -26,7 +26,7 @@ const App = () => {
     const newArray = toDo.filter((toDo) => toDo.id !== id);
 
     Swal.fire({
-      title: "¿Estás seguro de eliminar la tarea",
+      title: "¿Estás seguro de eliminar la tarea?",
       text: "¡No podrás recuperarla!",
       icon: "warning",
       showCancelButton: true,
