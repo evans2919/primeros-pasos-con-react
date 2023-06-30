@@ -47,6 +47,14 @@ const App = () => {
     });
   };
 
+   const orderToDo = (arrayToDo) => {
+     return arrayToDo.sort((a, b) => {
+       if (a.priority === b.priority) return 0;
+       if (a.priority) return -1;
+       if (!a.priority) return 1;
+     });
+   };
+
   return (
     <>
       <div className="container mt-5">
@@ -54,7 +62,7 @@ const App = () => {
         <ToDoForm createToDo={createToDo}></ToDoForm>
         <h2 className="my-5 text-center">Lista de tareas</h2>
         <ToDoList
-          toDo={toDo}
+          toDo={orderToDo(toDo)}
           updateToDo={updateToDo}
           deleteToDo={deleteToDo}
         ></ToDoList>
