@@ -1,52 +1,65 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import ToDoForm from "./components/ToDoForm";
 import ToDoList from "./components/ToDoList";
 
-const initialStateToDo = JSON.parse(localStorage.getItem("ToDo")) || [];
-
+const initialStateToDo = JSON.parse(localStorage.getItem("toDo")) || [];
 const App = () => {
-  const [ToDo, setToDo] = useState(initialStateToDo);
+  const [toDo, setToDo] = useState(initialStateToDo);
   useEffect(() => {
-    localStorage.setItem("ToDo", JSON.stringify(ToDo));
-  }, [ToDo]);
+    localStorage.setItem("toDo", JSON.stringify(toDo));
+  }, [toDo]);
 
-  const addToDo = (newToDo) => {
-    setToDo([...ToDo, newToDo]);
+  const createToDo = (newToDo) => {
+    setToDo([...toDo, newToDo]);
   };
-
-  const deleteToDo = (id) => {
-    const newArray = ToDo.filter((ToDo) => ToDo.id !== id);
-    setToDo(newArray);
-  };
-
   const updateToDo = (id) => {
-    const newArray = ToDo.map((ToDo) => {
-      return ToDo.id === id ? { ...ToDo, state: !ToDo.state } : ToDo;
+    const newArray = toDo.map((toDo) => {
+      if (toDo.id === id) {
+        toDo.state = !toDo.state;
+      }
+      return toDo;
     });
-
     setToDo(newArray);
   };
+  const deleteToDo = (id) => {
+    const newArray = toDo.filter((toDo) => toDo.id !== id);
 
-  const orderToDo = (arrayToDo) => {
-    return arrayToDo.sort((a, b) => {
-      if (a.priority === b.priority) return 0;
-      if (a.priority) return -1;
-      if (!a.priority) return 1;
+    Swal.fire({
+      title: "¿Estás seguro de eliminar la tarea",
+      text: "¡No podrás recuperarla!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, elimínala",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "¡Eliminada!",
+          text: "La tarea ha sido eliminada.",
+          icon: "success",
+          timer: 1500,
+        });
+        setToDo(newArray);
+      }
     });
   };
 
   return (
-    <div className="container mb-2">
-      <h1 className="my-5">Crear nueva tarea</h1>
-
-      <ToDoForm addToDo={addToDo}></ToDoForm>
-
-      <ToDoList
-        ToDo={orderToDo(ToDo)}
-        deleteToDo={deleteToDo}
-        updateToDo={updateToDo}
-      ></ToDoList>
-    </div>
+    <>
+      <div className="container mt-5">
+        <h2 className="mb-5">Crear nueva tarea</h2>
+        <ToDoForm createToDo={createToDo}></ToDoForm>
+        <h2 className="my-5 text-center">Lista de tareas</h2>
+        <ToDoList
+          toDo={toDo}
+          updateToDo={updateToDo}
+          deleteToDo={deleteToDo}
+        ></ToDoList>
+      </div>
+    </>
   );
 };
 

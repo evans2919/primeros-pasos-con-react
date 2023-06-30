@@ -1,92 +1,103 @@
 /* eslint-disable react/prop-types */
-import Swal from "sweetalert2";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
-const ToDoForm = ({ addToDo }) => {
-  // const [error, setError] = useState("");
-
+const ToDoForm = ({ createToDo }) => {
   const [newToDo, setNewToDo] = useState({
-    name: "",
+    title: "",
     description: "",
     priority: true,
-    state: "procesado",
+    state: "",
   });
-
-  const { name, description, priority, state } = newToDo;
+  const { title, description, priority, state } = newToDo;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim() || !description.trim()) {
+    if (!title.trim() || !description.trim()) {
       return Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Título y descripción obligatorios.",
+        text: "Lo sentimos, todos los campos son obligatorios.",
       });
     }
-
-    addToDo({
+    createToDo({
       id: Date.now(),
       ...newToDo,
-      state: state === "procesado"
+      state: state === "procesado",
     });
-
     Swal.fire({
       position: "top-end",
       icon: "success",
-      title: "Tarea creada correctamente",
+      title: "¡Se ha añadido una nueva tarea!",
       showConfirmButton: false,
       timer: 1500,
     });
   };
 
   const handleChange = (e) => {
-    const { name, type, checked, value } = e.target;
+    const { name, checked, value, type } = e.target;
     setNewToDo({ ...newToDo, [name]: type === "checkbox" ? checked : value });
   };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Ingrese nombre de tarea"
-        className="form-control mb-2"
-        name="name"
-        value={name}
-        onChange={handleChange}
-      />
-      <textarea
-        placeholder="Ingrese descripción de tarea"
-        className="form-control mb-2"
-        name="description"
-        value={description}
-        onChange={handleChange}
-      />
-      <div className="form-check mb-2">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          name="priority"
-          id="inputCheck"
-          checked={priority}
-          onChange={handleChange}
-        />
-        <label htmlFor="inputCheck">Prioritaria</label>
-      </div>
-
-      <select
-        className="form-select mb-2"
-        name="state"
-        value={state}
-        onChange={handleChange}
-      >
-        <option>Elija una opción</option>
-        <option value="pendiente">Pendiente</option>
-        <option value="procesado">Procesado</option>
-      </select>
-      <button type="submit" className="btn btn-primary">
-        Agregar tarea
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className="form-floating mb-3">
+          <input
+            type="text"
+            className="form-control"
+            id="floatingInput"
+            placeholder="Ingrese título de tarea"
+            name="title"
+            onChange={handleChange}
+            value={title}
+          />
+          <label htmlFor="floatingInput">Ingrese título de tarea</label>
+        </div>
+        <div className="form-floating mb-3">
+          <textarea
+            className="form-control"
+            style={{ height: 100 }}
+            id="floatingTextarea"
+            placeholder="Ingrese descripción de tarea"
+            name="description"
+            onChange={handleChange}
+            value={description}
+          />
+          <label htmlFor="floatingTextarea">Ingrese descripción de tarea</label>
+        </div>
+        <div className="form-check mb-3">
+          <input
+            className="form-check-input"
+            id="flexCheckIndeterminate"
+            type="checkbox"
+            name="priority"
+            onChange={handleChange}
+            checked={priority}
+          />
+          <label className="form-check-label" htmlFor="flexCheckIndeterminate">
+            Tarea prioritaria
+          </label>
+        </div>
+        <div className="form-floating mb-3">
+          <select
+            className="form-select"
+            id="floatingSelect"
+            aria-label="Floating label select example"
+            name="state"
+            onChange={handleChange}
+            value={state}
+          >
+            <option selected>Seleccione estado de tarea</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="procesado">Procesado</option>
+          </select>
+          <label htmlFor="floatingSelect">Seleccione estado de tarea</label>
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Crear tarea
+        </button>
+      </form>
+    </>
   );
 };
 

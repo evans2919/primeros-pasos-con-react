@@ -1,23 +1,26 @@
 /* eslint-disable react/prop-types */
 import ToDoListItem from "./ToDoListItem";
-
-const ToDoList = ({ ToDo, deleteToDo, updateToDo }) => {
+const ToDoList = ({ toDo, updateToDo, deleteToDo }) => {
   return (
-    <div className="mt-5">
-      <h2 className="text-center my-5">Lista de tareas</h2>
+    <>
       <ul className="list-group">
-        {ToDo.map((ToDo) => (
-          <ToDoListItem key={ToDo.id} ToDo={ToDo} deleteToDo={deleteToDo} updateToDo={updateToDo}></ToDoListItem>
+        {toDo.map((toDo) => (
+          <ToDoListItem
+            key={toDo.id}
+            toDo={toDo}
+            updateToDo={updateToDo}
+            deleteToDo={deleteToDo}
+          ></ToDoListItem>
         ))}
       </ul>
-      {ToDo.length === 0 &&
+      {toDo.length === 0 && (
         <ul className="list-group">
-          <li className="list-group-item text-center">
+          <li className="list-group-item shadow-sm p-3 mb-5 bg-body rounded text-center">
             No existen tareas creadas
           </li>
-      
-      </ul>}
-    </div>
+        </ul>
+      )}
+    </>
   );
 };
 
