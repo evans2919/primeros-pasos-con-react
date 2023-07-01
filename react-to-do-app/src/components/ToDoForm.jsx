@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Swal from "sweetalert2";
 
+
 const ToDoForm = ({ createToDo }) => {
+  const form = useRef(null);
   const [newToDo, setNewToDo] = useState({
     title: "",
     description: "",
@@ -13,6 +15,7 @@ const ToDoForm = ({ createToDo }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    form.current.reset();
     if (!title.trim() || !description.trim()) {
       return Swal.fire({
         icon: "error",
@@ -40,7 +43,7 @@ const ToDoForm = ({ createToDo }) => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={form}>
         <div className="form-floating mb-3">
           <input
             type="text"
@@ -93,7 +96,11 @@ const ToDoForm = ({ createToDo }) => {
           </select>
           <label htmlFor="floatingSelect">Seleccione estado de tarea</label>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button
+          type="submit"
+          data-bs-dismiss="modal"
+          className="btn btn-primary"
+        >
           Crear tarea
         </button>
       </form>
