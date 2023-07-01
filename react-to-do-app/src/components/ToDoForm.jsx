@@ -8,7 +8,7 @@ const ToDoForm = ({ createToDo }) => {
   const [newToDo, setNewToDo] = useState({
     title: "",
     description: "",
-    priority: true,
+    priority: false,
     state: "",
   });
   const { title, description, priority, state } = newToDo;
