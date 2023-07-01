@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import FormModal from "./components/FormModal";
 import ToDoList from "./components/ToDoList";
+import Header from "./components/Header";
 
 const initialStateToDo = JSON.parse(localStorage.getItem("toDo")) || [];
 const App = () => {
@@ -80,6 +81,7 @@ const App = () => {
 
   return (
     <>
+      <Header></Header>
       <div className="container mt-5">
         <button
           type="button"
