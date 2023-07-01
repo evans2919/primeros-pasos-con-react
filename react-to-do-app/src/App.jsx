@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import ToDoForm from "./components/ToDoForm";
+import FormModal from "./components/FormModal";
 import ToDoList from "./components/ToDoList";
 
 const initialStateToDo = JSON.parse(localStorage.getItem("toDo")) || [];
@@ -47,21 +47,54 @@ const App = () => {
     });
   };
 
-   const orderToDo = (arrayToDo) => {
-     return arrayToDo.sort((a, b) => {
-       if (a.priority === b.priority) return 0;
-       if (a.priority) return -1;
-       if (!a.priority) return 1;
-     });
-   };
+  const orderToDo = (arrayToDo) => {
+    return arrayToDo.sort((a, b) => {
+      if (a.priority === b.priority) return 0;
+      if (a.priority) return -1;
+      if (!a.priority) return 1;
+    });
+  };
+
+  const deleteAll = () => {
+    Swal.fire({
+      title: "¿Estás seguro de querer eliminar <b>TODAS</b> las tareas?",
+      text: "¡No podrás recuperarlas!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, elimínalas",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "¡Tareas eliminadas!",
+          text: "Las tareas han sido eliminadas.",
+          icon: "success",
+          timer: 1500,
+        });
+        setToDo([]);
+      }
+    });
+  };
 
   return (
     <>
       <div className="container mt-5">
-        <h2 className="mb-5">Crear nueva tarea</h2>
-        <ToDoForm createToDo={createToDo}></ToDoForm>
-        <h2 className="my-5 text-center">Lista de tareas</h2>
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#formModal"
+          data-bs-whatever="@mdo"
+        >
+          Crear nueva tarea
+        </button>
+
+        <FormModal createToDo={createToDo}></FormModal>
+
         <ToDoList
+          deleteAll={deleteAll}
           toDo={orderToDo(toDo)}
           updateToDo={updateToDo}
           deleteToDo={deleteToDo}
