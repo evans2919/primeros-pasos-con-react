@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 
 const ToDoForm = ({ createToDo }) => {
-  const form = useRef(null);
+
   const [newToDo, setNewToDo] = useState({
     title: "",
     description: "",
@@ -12,10 +12,11 @@ const ToDoForm = ({ createToDo }) => {
     state: "",
   });
   const { title, description, priority, state } = newToDo;
+    
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
-    form.current.reset();
     if (!title.trim() || !description.trim()) {
       return Swal.fire({
         icon: "error",
@@ -35,15 +36,25 @@ const ToDoForm = ({ createToDo }) => {
       showConfirmButton: false,
       timer: 1500,
     });
+
+    setNewToDo({
+      title: "",
+      description: "",
+      priority: false,
+      state: "",
+    });
+    
   };
 
   const handleChange = (e) => {
     const { name, checked, value, type } = e.target;
     setNewToDo({ ...newToDo, [name]: type === "checkbox" ? checked : value });
   };
+
+  
   return (
     <>
-      <form onSubmit={handleSubmit} ref={form}>
+      <form onSubmit={handleSubmit}>
         <div className="form-floating mb-3">
           <input
             type="text"
