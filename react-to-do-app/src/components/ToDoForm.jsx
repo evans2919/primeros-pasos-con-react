@@ -2,9 +2,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 
-
 const ToDoForm = ({ createToDo }) => {
-
   const [newToDo, setNewToDo] = useState({
     title: "",
     description: "",
@@ -12,10 +10,8 @@ const ToDoForm = ({ createToDo }) => {
     state: "",
   });
   const { title, description, priority, state } = newToDo;
-    
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
     if (!title.trim() || !description.trim()) {
       return Swal.fire({
@@ -43,7 +39,6 @@ const ToDoForm = ({ createToDo }) => {
       priority: false,
       state: "",
     });
-    
   };
 
   const handleChange = (e) => {
@@ -51,7 +46,6 @@ const ToDoForm = ({ createToDo }) => {
     setNewToDo({ ...newToDo, [name]: type === "checkbox" ? checked : value });
   };
 
-  
   return (
     <>
       <form onSubmit={handleSubmit}>
