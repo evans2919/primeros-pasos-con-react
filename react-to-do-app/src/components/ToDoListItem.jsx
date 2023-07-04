@@ -3,8 +3,8 @@ const ToDoListItem = ({ toDo, updateToDo, deleteToDo }) => {
   const { id, title, description, priority, state } = toDo;
   return (
     <>
-      <div className="col-lg-4 col-md-6 bg-body rounded">
-        <div className="d-flex shadow p-3 mb-3 justify-content-between align-items-start">
+      <div className="bg-body rounded">
+        <div className="d-flex shadow p-3 mb-3 justify-content-between align-items-start rounded">
           <div className="d-flex flex-column">
             <h5 className={state && "text-decoration-line-through"}>{title}</h5>
             <p className={state && "text-decoration-line-through"}>
@@ -25,12 +25,21 @@ const ToDoListItem = ({ toDo, updateToDo, deleteToDo }) => {
               </button>
             </div>
           </div>
-          <div>
-            {priority && (
-              <span className="badge rounded-pill text-bg-primary">
-                Prioridad
-              </span>
-            )}
+          <div className="d-flex gap-2">
+            <div>
+              {state && (
+                <span className="badge rounded-pill text-bg-success">
+                  Completada
+                </span>
+              )}
+            </div>
+            <div>
+              {priority && (
+                <span className="badge rounded-pill text-bg-primary">
+                  Prioritaria
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
