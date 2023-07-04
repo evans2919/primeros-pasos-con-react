@@ -7,7 +7,7 @@ const ToDoListActions = ({ toDo, deleteAll, deleteCompleted }) => {
           <div className="btn-group">
             <button
               type="button"
-              className="btn btn-danger dropdown-toggle"
+              className="btn btn-success dropdown-toggle"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
