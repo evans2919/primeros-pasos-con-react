@@ -4,9 +4,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-                      <img src="/react.svg" alt="" />
-
-                      
+            <img src="/react.svg" alt="" />
 
             <img src="/vite.svg" alt="" />
           </a>
@@ -64,7 +62,6 @@ const Header = () => {
                   </li>
                 </ul>
               </li>
-          
             </ul>
             <form className="d-flex" role="search">
               <input

@@ -79,6 +79,17 @@ const App = () => {
     });
   };
 
+  const deleteCompleted = () => {
+    const newArray = toDo.filter((toDo) => toDo.state !== true);
+    setToDo(newArray);
+     Swal.fire({
+       title: "¡Tareas completadas eliminadas!",
+       text: "Las tareas completadas han sido eliminadas.",
+       icon: "success",
+       timer: 1500,
+     });
+  };
+
   return (
     <>
       <Header></Header>
@@ -97,6 +108,7 @@ const App = () => {
 
         <ToDoList
           deleteAll={deleteAll}
+          deleteCompleted={deleteCompleted}
           toDo={orderToDo(toDo)}
           updateToDo={updateToDo}
           deleteToDo={deleteToDo}
