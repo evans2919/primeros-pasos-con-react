@@ -13,7 +13,7 @@ const ToDoListActions = ({ toDo, deleteAll, deleteCompleted }) => {
             >
               Acciones
             </button>
-            <ul className="dropdown-menu" style={{ width: 200 }}>
+            <ul className="dropdown-menu" style={{ width: 250 }}>
               <li>
                 {toDo.filter((toDo) => toDo.state).length >= 1 && (
                   <>
