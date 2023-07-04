@@ -1,22 +1,23 @@
 /* eslint-disable react/prop-types */
 import ToDoListItem from "./ToDoListItem";
-const ToDoList = ({ toDo, updateToDo, deleteToDo, deleteAll }) => {
+import ToDoListActions from "./ToDoListActions";
+const ToDoList = ({
+  toDo,
+  updateToDo,
+  deleteToDo,
+  deleteAll,
+  deleteCompleted,
+}) => {
   return (
     <>
       <h2 className="mt-5 text-center">Lista de tareas</h2>
-      {toDo.length > 0 && (
-        <div className="d-flex justify-content-end my-5">
-          <div>
-            <p>Tareas creadas: {toDo.length}</p>
-            {toDo.length > 1 && (
-              <button className="btn btn-danger" onClick={() => deleteAll()}>
-                Eliminar todas las tareas
-              </button>
-            )}
-          </div>
-        </div>
-      )}
-      <div className="row">
+      <ToDoListActions
+        deleteAll={deleteAll}
+        deleteCompleted={deleteCompleted}
+        toDo={toDo}
+      ></ToDoListActions>
+
+      <ul className="list-group">
         {toDo.map((toDo) => (
           <ToDoListItem
             key={toDo.id}
@@ -25,7 +26,7 @@ const ToDoList = ({ toDo, updateToDo, deleteToDo, deleteAll }) => {
             deleteToDo={deleteToDo}
           ></ToDoListItem>
         ))}
-      </div>
+      </ul>
       {toDo.length === 0 && (
         <ul className="list-group">
           <li className="list-group-item shadow-sm p-3 mb-5 bg-body rounded text-center">
