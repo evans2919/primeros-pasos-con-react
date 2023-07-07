@@ -6,10 +6,17 @@ const ToDoListItem = ({ toDo, updateToDo, deleteToDo }) => {
       <div className="bg-body rounded">
         <div className="d-flex shadow p-3 mb-3 justify-content-between align-items-start rounded">
           <div className="d-flex flex-column">
-            <h5 className={state && "text-decoration-line-through"}>{title}</h5>
-            <p className={state && "text-decoration-line-through"}>
-              {description}
-            </p>
+            <div>
+              <h5 className={state && "text-decoration-line-through"}>
+                {title}
+              </h5>
+            </div>
+            <div>
+              <p className={state && "text-decoration-line-through"}>
+                {description}
+              </p>
+            </div>
+
             <div className="d-flex gap-2">
               <button
                 className="btn btn-danger btn-sm"
